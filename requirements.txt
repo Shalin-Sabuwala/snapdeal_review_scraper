@@ -16,7 +16,6 @@ colorama==0.4.4
 colorlover==0.3.0
 configparser==5.0.1
 crayons==0.4.0
-cryptography @ file:///tmp/build/80754af9/cryptography_1607635341180/work
 cssselect==1.1.0
 cufflinks==0.17.3
 cycler==0.10.0
@@ -78,7 +77,6 @@ PyGetWindow==0.0.9
 Pygments==2.7.2
 pymongo==3.11.2
 PyMsgBox==1.0.9
-pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
 pyparsing==2.4.7
 pyperclip==1.8.1
 pyppeteer==0.2.5
@@ -86,7 +84,6 @@ pyquery==1.4.3
 PyRect==0.1.4
 pyrsistent==0.17.3
 PyScreeze==0.1.26
-PySocks @ file:///tmp/build/80754af9/pysocks_1605305779399/work
 python3-xlib==0.15
 PyTweening==1.0.3
 pyzmq==20.0.0
