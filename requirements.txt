@@ -101,7 +101,6 @@ terminado==0.9.1
 testpath==0.4.4
 tornado==6.1
 tqdm==4.56.0
-traitlets==5.0.5
 urllib3==1.25.10
 w3lib==1.22.0
 wcwidth==0.2.5
