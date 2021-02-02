@@ -1,11 +1,12 @@
+import os
 
 from flask import Flask, render_template, request, jsonify
 
 from bs4 import BeautifulSoup as bs
 from urllib.request import urlopen as uReq
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+# from selenium.webdriver.chrome.options import Options
+# from webdriver_manager.chrome import ChromeDriverManager
 import time
 import pymongo
 
@@ -18,7 +19,6 @@ def homepage():
 @app.route('/scrap',methods=['POST'])
 def scrip():
     if request.method == 'POST':
-
         DB_NAME = "Snapdeal_Scrapper"
         searchString = request.form['content'].replace(" ", "+")
         try:
@@ -38,15 +38,16 @@ def scrip():
                 bigboxes = snapdeal_html.findAll("a", {"class": "dp-widget-link"})
                 del bigboxes[0:4]
                 box = bigboxes[0]
-
+                CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
                 productLink = str(box['href'])
-
-                options = Options()
+                chrome_bin = os.environ.get('GOOGLE_CHROME_BIN', "chromedriver")
+                options = webdriver.ChromeOptions()
+                options.binary_location = chrome_bin
                 options.add_argument('--headless')  # background task; don't open a window
                 options.add_argument('--disable-gpu')
                 options.add_argument('--no-sandbox')  # I copied this, so IDK?
                 options.add_argument('--disable-dev-shm-usage')
-                driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+                driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
 
                 driver.get(productLink)
 
@@ -93,5 +94,5 @@ def scrip():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
