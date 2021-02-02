@@ -7,6 +7,7 @@ from urllib.request import urlopen as uReq
 from selenium import webdriver
 # from selenium.webdriver.chrome.options import Options
 # from webdriver_manager.chrome import ChromeDriverManager
+
 import time
 import pymongo
 
@@ -38,16 +39,22 @@ def scrip():
                 bigboxes = snapdeal_html.findAll("a", {"class": "dp-widget-link"})
                 del bigboxes[0:4]
                 box = bigboxes[0]
-                CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+
                 productLink = str(box['href'])
-                chrome_bin = os.environ.get('GOOGLE_CHROME_BIN', "chromedriver")
-                options = webdriver.ChromeOptions()
-                options.binary_location = chrome_bin
-                options.add_argument('--headless')  # background task; don't open a window
-                options.add_argument('--disable-gpu')
-                options.add_argument('--no-sandbox')  # I copied this, so IDK?
-                options.add_argument('--disable-dev-shm-usage')
-                driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=options)
+                # chrome_bin = os.environ.get('GOOGLE_CHROME_BIN', "chromedriver")
+                # options = webdriver.ChromeOptions()
+                # options.binary_location = chrome_bin
+                # options.add_argument('--headless')  # background task; don't open a window
+                # options.add_argument('--disable-gpu')
+                # options.add_argument('--no-sandbox')  # I copied this, so IDK?
+                # options.add_argument('--disable-dev-shm-usage')
+                GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+                CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+                chrome_options = webdriver.ChromeOptions()
+                chrome_options.add_argument('--disable-gpu')
+                chrome_options.add_argument('--no-sandbox')
+                chrome_options.binary_location = GOOGLE_CHROME_PATH
+                driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
                 driver.get(productLink)
 
