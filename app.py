@@ -60,7 +60,7 @@ def scrip():
                 time.sleep(2)
                 html = driver.page_source
                 soup = bs(html, "html.parser" )
-
+                print(soup)
                 commentboxes = soup.findAll("div", {"class": "commentlist first jsUserAction"})
                 reviews = []
                 for commentboxe in commentboxes:
