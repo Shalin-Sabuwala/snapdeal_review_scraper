@@ -57,9 +57,9 @@ def scrip():
 
                 driver.get(productLink)
 
-                time.sleep(1)
+                time.sleep(2)
                 html = driver.page_source
-                soup = bs(html)
+                soup = bs(html, "html.parser" )
 
                 commentboxes = soup.findAll("div", {"class": "commentlist first jsUserAction"})
                 reviews = []
